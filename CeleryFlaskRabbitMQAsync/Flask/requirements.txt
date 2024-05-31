@@ -1,0 +1,5 @@
+Flask
+werkzeug
+gunicorn
+celery[redis]
+pika

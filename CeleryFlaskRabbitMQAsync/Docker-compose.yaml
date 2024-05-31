@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  web:
+    container_name: web
+    build: ./Flask
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - ./Flask:/app
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.8.22
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  worker:
+    build:
+      context: ./Flask
+    hostname: worker
+    entrypoint: celery
+    command: -A celery_app.celery worker --loglevel=info -Q celery_queue -c 1
+    volumes:
+      - ./Flask:/app
+    depends_on:
+      - rabbitmq
