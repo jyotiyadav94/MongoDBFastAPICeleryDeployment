@@ -18,11 +18,11 @@ cluster_uri = os.getenv("CLUSTER_URI")
 collection_name = os.getenv("MONGODB_COLLECTION")
 database_name = os.getenv("MONGODB_DATABASE")
 
-username1 = "jojoyadav255"
-password1 = "CbS1zFtduhiTwQB4"
-cluster_uri1 = "mongodb+srv://jojoyadav255:CbS1zFtduhiTwQB4@cluster0.912iw8i.mongodb.net/?retryWrites=true&w=majority"
-collection_name1 = "collection"
-database_name1 = "database"
+username1 = ""
+password1 = ""
+cluster_uri1 = ""
+collection_name1 = ""
+database_name1 = ""
 
 
 app = FastAPI()
